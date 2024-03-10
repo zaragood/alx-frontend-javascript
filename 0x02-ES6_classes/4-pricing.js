@@ -1,5 +1,8 @@
-import Currency from './3-currency';
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/extensions
+import Currency from './3-currency.js';
 
+/* eslint-disable no-underscore-dangle */
 export default class Pricing {
   constructor(amount, currency) {
     if (typeof amount !== 'number') {
@@ -15,11 +18,10 @@ export default class Pricing {
   }
 
   set amount(amount) {
-    if (typeof amount === 'number') {
-      this._amount = amount;
-    } else {
-      throw TypeError('amount must be a number');
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
     }
+    this._amount = amount;
   }
 
   get currency() {
@@ -27,18 +29,16 @@ export default class Pricing {
   }
 
   set currency(currency) {
-    if (typeof currency === 'object' && currency instanceof Currency) {
-      this._currency = currency;
-    } else {
-      throw TypeError('currency must be of type currency');
-    }
+    this._currency = currency;
   }
 
   displayFullPrice() {
-    return ` ${this._amount} ${this._currency.name} (${this._currency.code})`;
+    return `${this._amount} ${this._currency.displayFullCurrency()}`;
   }
 
   static convertPrice(amount, conversionRate) {
     return amount * conversionRate;
   }
 }
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
